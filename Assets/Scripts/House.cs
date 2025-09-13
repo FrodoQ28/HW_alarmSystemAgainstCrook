@@ -1,25 +1,28 @@
 using System;
 using UnityEngine;
 
-[RequireComponent (typeof(BoxCollider))]
+[RequireComponent(typeof(BoxCollider))]
 public class House : MonoBehaviour
 {
-    public event Action housebreakingDetekted;
-    public event Action housebreakingUndetekted;
+    public event Action HousebreakingDetekted;
+    public event Action HousebreakingUndetekted;
 
     private void Start()
     {
-        BoxCollider collider = GetComponent<BoxCollider> ();
+        BoxCollider collider = GetComponent<BoxCollider>();
         collider.isTrigger = true;
     }
 
     private void OnTriggerEnter(Collider collider)
     {
-        housebreakingDetekted?.Invoke();
+        if (collider.TryGetComponent(out Mover mover))
+            HousebreakingDetekted?.Invoke();
+
     }
 
     private void OnTriggerExit(Collider collider)
     {
-        housebreakingUndetekted?.Invoke();
+        if (collider.TryGetComponent(out Mover mover))
+            HousebreakingUndetekted?.Invoke();
     }
 }

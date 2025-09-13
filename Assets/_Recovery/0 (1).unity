@@ -2041,7 +2041,7 @@ MonoBehaviour:
   - {fileID: 324078869}
   - {fileID: 1283223464}
   - {fileID: 880967138}
-  _speed: 0.3
+  _speed: 0.5
 --- !u!136 &1216441822
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3140,8 +3140,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 7.1991687, y: 8.866892, z: 2.332045}
-  m_Center: {x: 4.129136, y: -10.981331, z: 0.66602176}
+  m_Size: {x: 7.1991687, y: 10.235034, z: 2.332045}
+  m_Center: {x: 4.129136, y: -11.665402, z: 0.66602176}
 --- !u!1001 &2090383938
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class Alarm : MonoBehaviour
     private float _minVolume = 0f;
     private float _maxVolume = 1f;
 
-    public event Action alarmEnabled;
+    public event Action AlarmEnabled;
 
     private void Start()
     {
@@ -24,39 +24,27 @@ public class Alarm : MonoBehaviour
 
     private void OnEnable()
     {
-        _house.housebreakingDetekted += AlarmOn;
-        _house.housebreakingUndetekted += AlarmOff;
+        _house.HousebreakingDetekted += AlarmOn;
+        _house.HousebreakingUndetekted += AlarmOff;
     }
 
     private void OnDisable()
     {
-        _house.housebreakingDetekted -= AlarmOn;
-        _house.housebreakingUndetekted -= AlarmOff;
+        _house.HousebreakingDetekted -= AlarmOn;
+        _house.HousebreakingUndetekted -= AlarmOff;
     }
 
-    private IEnumerator IncreasingVolume()
+    private IEnumerator ChangingVolume(float targetVolume)
     {
-        _timePassed = 0;
+        float startingVolume = _audioSource.volume;
 
-        while (_audioSource.volume <= _maxVolume)
+        _timePassed = 0f;
+
+        while (!Mathf.Approximately(_audioSource.volume, targetVolume))
         {
             _timePassed += Time.deltaTime;
 
-            _audioSource.volume = Mathf.MoveTowards(_minVolume, _maxVolume, _timePassed / _timeToChangedVolume);
-
-            yield return null;
-        }
-    }
-
-    private IEnumerator ReductingVolume()
-    {
-        _timePassed = 0;
-
-        while (_audioSource.volume >= _minVolume)
-        {
-            _timePassed += Time.deltaTime;
-
-            _audioSource.volume = Mathf.MoveTowards(_maxVolume, _minVolume, _timePassed / _timeToChangedVolume);
+            _audioSource.volume = Mathf.MoveTowards(startingVolume, targetVolume, _timePassed / _timeToChangedVolume);
 
             yield return null;
         }
@@ -64,15 +52,15 @@ public class Alarm : MonoBehaviour
 
     private void AlarmOn()
     {
-        alarmEnabled?.Invoke();
+        AlarmEnabled?.Invoke();
 
         StopAllCoroutines();
-        StartCoroutine(IncreasingVolume());
+        StartCoroutine(ChangingVolume(_maxVolume));
     }
 
     private void AlarmOff()
     {
         StopAllCoroutines();
-        StartCoroutine(ReductingVolume());
+        StartCoroutine(ChangingVolume(_minVolume));
     }
 }
