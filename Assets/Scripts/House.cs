@@ -1,28 +1,24 @@
-using System;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
 public class House : MonoBehaviour
 {
-    public event Action HousebreakingDetekted;
-    public event Action HousebreakingUndetekted;
+    [SerializeField] private SecuritySensor _detector;
+    [SerializeField] private Alarm _alarm;
 
-    private void Start()
+    private void OnEnable()
     {
-        BoxCollider collider = GetComponent<BoxCollider>();
-        collider.isTrigger = true;
+        _detector.HousebreakingDetekted += AlarmOn;
+        _detector.HousebreakingUndetekted += AlarmOff;
+    }
+    private void OnDisable()
+    {
+        _detector.HousebreakingDetekted -= AlarmOn;
+        _detector.HousebreakingUndetekted -= AlarmOff;
     }
 
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (collider.TryGetComponent(out Mover mover))
-            HousebreakingDetekted?.Invoke();
+    private void AlarmOn() =>
+        _alarm.EnableSiren();
 
-    }
-
-    private void OnTriggerExit(Collider collider)
-    {
-        if (collider.TryGetComponent(out Mover mover))
-            HousebreakingUndetekted?.Invoke();
-    }
+    private void AlarmOff() =>
+        _alarm.DisableSiren();
 }

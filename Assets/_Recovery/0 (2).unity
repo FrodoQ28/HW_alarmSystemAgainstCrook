@@ -1640,72 +1640,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ba5ac2de7ff0764e8874d18fcb4484c, type: 3}
---- !u!1 &944245997
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 944246000}
-  - component: {fileID: 944245999}
-  - component: {fileID: 944245998}
-  m_Layer: 0
-  m_Name: SecuritySensor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &944245998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 944245997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 800f70d7dcaecdd4f8a2e3180e485a06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ThiefDetector
---- !u!65 &944245999
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 944245997}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &944246000
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 944245997}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 146.64859, y: 0.3, z: -76.4247}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &978076758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2860,6 +2794,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d1c1f7f4ffcc45540816083437db82b7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2071903393}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d1c1f7f4ffcc45540816083437db82b7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2071903395}
     - targetCorrespondingSourceObject: {fileID: 570308950741440857, guid: d1c1f7f4ffcc45540816083437db82b7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 462307075}
@@ -3074,6 +3011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24a5c9dffa6e3543abe2d9630e09438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Alarm
+  _house: {fileID: 2071903393}
 --- !u!114 &2071903393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3086,8 +3024,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d676503a8aef234fb0679b01b64ebe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::House
-  _detector: {fileID: 944245998}
-  _alarm: {fileID: 2071903392}
 --- !u!82 &2071903394
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3185,6 +3121,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &2071903395
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69426598}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.1991687, y: 8.866892, z: 2.332045}
+  m_Center: {x: 4.129136, y: -10.981331, z: 0.66602176}
 --- !u!1001 &2090383938
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3273,4 +3230,3 @@ SceneRoots:
   - {fileID: 225609876}
   - {fileID: 1398613047}
   - {fileID: 1216441825}
-  - {fileID: 944246000}

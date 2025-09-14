@@ -22,12 +22,12 @@ public class Mover : MonoBehaviour
 
     private void OnEnable()
     {
-        _alarm.AlarmEnabled += Run;
+        _alarm.EnabledSiren += Run;
     }
 
     private void OnDisable()
     {
-        _alarm.AlarmEnabled -= Run;
+        _alarm.EnabledSiren -= Run;
     }
 
     private void Update()

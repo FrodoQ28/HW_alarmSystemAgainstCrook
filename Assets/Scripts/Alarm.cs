@@ -5,33 +5,20 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class Alarm : MonoBehaviour
 {
-    [SerializeField] private House _house;
-
     private AudioSource _audioSource;
+
     private float _timeToChangedVolume = 2f;
     private float _timePassed;
     private float _minVolume = 0f;
     private float _maxVolume = 1f;
 
-    public event Action AlarmEnabled;
+    public event Action EnabledSiren;
 
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
         _audioSource.volume = _minVolume;
         _audioSource.playOnAwake = true;
-    }
-
-    private void OnEnable()
-    {
-        _house.HousebreakingDetekted += AlarmOn;
-        _house.HousebreakingUndetekted += AlarmOff;
-    }
-
-    private void OnDisable()
-    {
-        _house.HousebreakingDetekted -= AlarmOn;
-        _house.HousebreakingUndetekted -= AlarmOff;
     }
 
     private IEnumerator ChangingVolume(float targetVolume)
@@ -50,15 +37,15 @@ public class Alarm : MonoBehaviour
         }
     }
 
-    private void AlarmOn()
+    public void EnableSiren()
     {
-        AlarmEnabled?.Invoke();
+        EnabledSiren?.Invoke();
 
         StopAllCoroutines();
         StartCoroutine(ChangingVolume(_maxVolume));
     }
 
-    private void AlarmOff()
+    public void DisableSiren()
     {
         StopAllCoroutines();
         StartCoroutine(ChangingVolume(_minVolume));
